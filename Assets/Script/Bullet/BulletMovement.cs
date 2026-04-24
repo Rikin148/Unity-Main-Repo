@@ -6,12 +6,19 @@ public class BulletMovement : MonoBehaviour
 {
     public float speed = 8f;
     public float lifeTime = 3f;
+    public int baseDamage = 15;
 
     private float timer;
+    private PlayerHealth playerHealth;
 
     void OnEnable()
     {
         timer = lifeTime; // reset every time bullet is reused
+
+        if (playerHealth == null)
+        {
+            playerHealth = FindObjectOfType<PlayerHealth>();
+        }
     }
 
     void Update()
@@ -37,7 +44,13 @@ public class BulletMovement : MonoBehaviour
 
             if (enemy != null)
             {
-                enemy.TakeDamage(15);
+                int damageToDeal = baseDamage;
+                if (playerHealth != null)
+                {
+                    damageToDeal = playerHealth.GetOutgoingDamage(baseDamage);
+                }
+
+                enemy.TakeDamage(damageToDeal);
             }
 
             gameObject.SetActive(false); // 🔥 THIS STOPS IT

@@ -78,7 +78,6 @@ public class PlayerHealth : MonoBehaviour
             if (damageTimer <= 0)
             {
                 isDamageActive = false;
-                powerUp = new BasePowerUp();
             }
         }
 
@@ -238,7 +237,12 @@ public class PlayerHealth : MonoBehaviour
 
     public void ApplyDoubleDamage()
     {
-        powerUp = new DoubleDamagePowerUp(new BasePowerUp());
+        // Double damage should affect outgoing player bullets, not incoming player damage.
+    }
+
+    public int GetOutgoingDamage(int baseDamage)
+    {
+        return isDamageActive ? baseDamage * 2 : baseDamage;
     }
 
     public float GetShieldCooldown()
