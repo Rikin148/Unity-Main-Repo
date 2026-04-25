@@ -13,7 +13,6 @@ public class GameOverUI : MonoBehaviour
 
     public void ShowGameOver(int level)
     {
-        Debug.Log("GAME OVER TRIGGERED");
         panel.SetActive(true);
 
         float time = timer.GetTime();

@@ -92,9 +92,6 @@ public class PlayerHealth : MonoBehaviour
         if (inputAdapter.DoubleDamageAbilityPressed() && damageCooldown <= 0)
         {
             ApplyDoubleDamage();
-            damageTimer = 10f;
-            isDamageActive = true;
-            damageCooldown = 60f;
         }
     }
 
@@ -183,12 +180,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void ResetPlayer()
     {
-        Debug.Log("ResetPlayer called");
-
         hp = maxHP;
         currentHeals = maxHeals;
 
-        // 🔥 FIX: Restore heal icons
         foreach (Image icon in healIcons)
         {
             if (icon != null)
@@ -226,8 +220,6 @@ public class PlayerHealth : MonoBehaviour
 
         OnHealthChanged?.Invoke(hp);
         OnHealChanged?.Invoke(currentHeals);
-
-        Debug.Log("Player reset complete");
     }
 
     public void ApplyShield()
@@ -237,7 +229,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void ApplyDoubleDamage()
     {
-        // Double damage should affect outgoing player bullets, not incoming player damage.
+        damageTimer = 10f;
+        isDamageActive = true;
+        damageCooldown = 60f;
     }
 
     public int GetOutgoingDamage(int baseDamage)

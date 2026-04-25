@@ -525,10 +525,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4826520382043501903, guid: d3e6fb9ce12f8c54da1f744f241dad4a, type: 3}
-  level: 1
   levelText: {fileID: 1570671535}
   gameFacade: {fileID: 1788525094}
   player: {fileID: 125154337}
+  level: 1
 --- !u!4 &171171782
 Transform:
   m_ObjectHideFlags: 0

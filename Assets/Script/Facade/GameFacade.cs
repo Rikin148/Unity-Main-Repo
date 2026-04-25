@@ -6,13 +6,10 @@ using TMPro;
 public class GameFacade : MonoBehaviour
 {
     private EnemyFactory factory;
-
     public TextMeshProUGUI levelText;
     public float minDistanceBetweenEnemies = 2f;
-
     private int enemiesAlive = 0;
 
-    // 🔥 TRACK ALL ENEMIES CREATED BY FACTORY
     private List<GameObject> spawnedEnemies = new List<GameObject>();
 
     public void Initialize(GameObject enemyPrefab)
@@ -72,13 +69,9 @@ public class GameFacade : MonoBehaviour
             } while (!validPosition);
 
             usedPositions.Add(pos);
-
             string type = (i % 2 == 0) ? "zigzag" : "horizontal";
-
-            // 🔥 CREATE ENEMY USING FACTORY
             GameObject enemy = factory.CreateEnemy(type, pos);
 
-            // 🔥 REGISTER ENEMY FOR TRACKING
             if (enemy != null)
             {
                 spawnedEnemies.Add(enemy);
@@ -86,15 +79,9 @@ public class GameFacade : MonoBehaviour
         }
     }
 
-    // 🔥 CALLED WHEN ENEMY DIES
     public void EnemyDied()
     {
         enemiesAlive--;
-
-        if (enemiesAlive <= 0)
-        {
-            Debug.Log("LEVEL COMPLETE");
-        }
     }
 
     public int GetEnemiesAlive()
@@ -106,8 +93,6 @@ public class GameFacade : MonoBehaviour
     {
         enemiesAlive = count;
     }
-
-    // 🔥 CLEAN RESET (NO FINDOBJECTS)
     public void ResetGame()
     {
         foreach (GameObject enemy in spawnedEnemies)

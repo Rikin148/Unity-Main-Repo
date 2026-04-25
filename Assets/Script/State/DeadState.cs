@@ -12,9 +12,6 @@ public class DeadState : IPlayerState
         if (!hasDied)
         {
             hasDied = true;
-
-            Debug.Log("DeadState Triggered");
-
             player.GameOver();
         }
     }

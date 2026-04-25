@@ -5,10 +5,8 @@ using UnityEngine;
 public class EnemyBulletPool : MonoBehaviour
 {
     public static EnemyBulletPool Instance;
-
     public GameObject bulletPrefab;
     public int poolSize = 20;
-
     private List<GameObject> pool;
 
     void Awake()
@@ -49,7 +47,7 @@ public class EnemyBulletPool : MonoBehaviour
         {
             if (bullet != null)
             {
-                bullet.SetActive(false); // 🔥 deactivate all bullets
+                bullet.SetActive(false);
             }
         }
     }

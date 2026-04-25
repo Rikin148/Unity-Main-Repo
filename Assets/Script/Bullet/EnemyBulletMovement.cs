@@ -6,30 +6,23 @@ public class EnemyBulletMovement : MonoBehaviour
 {
     public float speed = 6f;
     public float lifeTime = 3f;
-
     private float timer;
 
     void OnEnable()
     {
-        // 🔥 Reset timer every time bullet is reused
         timer = lifeTime;
     }
 
     void Update()
     {
-        // 🔥 Move downward
         transform.position += Vector3.down * speed * Time.deltaTime;
-
-        // 🔥 Countdown lifetime
         timer -= Time.deltaTime;
 
         if (timer <= 0f)
         {
-            gameObject.SetActive(false); // return to pool
+            gameObject.SetActive(false); 
         }
     }
-
-    // 🔥 COLLISION WITH PLAYER
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Enemy")) return;

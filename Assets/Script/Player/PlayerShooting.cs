@@ -3,7 +3,6 @@ using UnityEngine;
 public class PlayerShooting : MonoBehaviour
 {
     public Transform firePoint;
-
     private IInputAdapter inputAdapter;
     private ICommand shootCommand;
     private ICommand healCommand;

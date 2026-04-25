@@ -6,7 +6,6 @@ public class EnemyShooting : MonoBehaviour
 {
     public float fireRate = 2f;
     private float nextFireTime = 0f;
-
     public Transform firePoint;
 
     void Update()

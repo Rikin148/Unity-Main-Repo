@@ -7,11 +7,9 @@ public class EnemyHealth : MonoBehaviour
 {
     public int maxHP = 50;
     public int hp;
-
     public Slider healthBar;
     public GameObject worldCanvas;
-
-    private bool isDead = false; // 🔥 prevents multiple death calls
+    private bool isDead = false; 
 
     void Start()
     {
@@ -24,13 +22,10 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    // 🔥 DAMAGE SYSTEM
     public void TakeDamage(int damage)
     {
-        if (isDead) return; // 🚨 CRITICAL FIX
-
+        if (isDead) return; 
         hp -= damage;
-
         if (hp <= 0)
         {
             hp = 0;
@@ -38,19 +33,16 @@ public class EnemyHealth : MonoBehaviour
             return;
         }
 
-        // Update health bar if still alive
         if (healthBar != null)
         {
             healthBar.value = hp;
         }
     }
 
-    // 🔥 DEATH HANDLING
     void Die()
     {
         isDead = true;
 
-        // Update UI
         if (healthBar != null)
         {
             healthBar.value = 0;
@@ -61,13 +53,11 @@ public class EnemyHealth : MonoBehaviour
             Destroy(worldCanvas);
         }
 
-        // Notify GameManager
         if (GameManager.Instance != null)
         {
             GameManager.Instance.EnemyDied();
         }
 
-        // Destroy enemy
         Destroy(gameObject);
     }
 }

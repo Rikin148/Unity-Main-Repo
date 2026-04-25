@@ -6,17 +6,11 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
     public GameObject enemyPrefab;
-
-    public int level = 1;
-
     public TextMeshProUGUI levelText;
-
     public GameFacade gameFacade;
     public GameObject player;
-
-
+    public int level = 1;
 
     void Awake()
     {
@@ -28,16 +22,12 @@ public class GameManager : MonoBehaviour
         gameFacade.Initialize(enemyPrefab);
     }
 
-    // 🔥 START GAME
     public void StartGame()
     {
         level = 1;
-
         UpdateLevelUI();
-
         SpawnNextLevel();
 
-        //player.SetState(new AliveState());
         player.SetActive(true);
         if (player != null)
         {
@@ -54,21 +44,17 @@ public class GameManager : MonoBehaviour
         if (EnemyBulletPool.Instance != null)
             EnemyBulletPool.Instance.ResetPool();
     }
-
     void SpawnNextLevel()
     {
         if (gameFacade != null)
             gameFacade.StartLevel(level);
     }
 
-    // 🔥 CALLED BY ENEMY WHEN IT DIES
     public void EnemyDied()
     {
         if (gameFacade != null)
         {
             gameFacade.EnemyDied();
-
-            // 🔥 CHECK IF LEVEL COMPLETE
             if (gameFacade.GetEnemiesAlive() <= 0)
             {
                 level++;
@@ -79,7 +65,6 @@ public class GameManager : MonoBehaviour
             }
         }
     }
-
     void UpdateLevelUI()
     {
         if (levelText != null)

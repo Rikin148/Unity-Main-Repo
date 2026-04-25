@@ -6,8 +6,6 @@ public class AliveState : IPlayerState
 {
     public void Handle(PlayerHealth player)
     {
-       
-        // 🔥 ENSURE PLAYER IS ACTIVE
         if (!player.gameObject.activeSelf)
         {
             player.gameObject.SetActive(true);
