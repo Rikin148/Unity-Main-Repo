@@ -69,6 +69,7 @@ public class PlayerHealth : MonoBehaviour
             {
                 isShieldActive = false;
                 powerUp = new BasePowerUp();
+                shieldCooldown = 50f;
             }
         }
 
